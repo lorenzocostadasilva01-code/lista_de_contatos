@@ -16,12 +16,8 @@ import com.example.lista_de_contato.ui.theme.Lista_de_contatoTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            Lista_de_contatoTheme {
-                    MudarTela()
-                    BotaoToast()
-            }
+            AppNavigation()
         }
     }
 }
