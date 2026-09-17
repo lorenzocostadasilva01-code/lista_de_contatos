@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">lista_de_contato</string>
+    <string name="title_activity_tela_inicial">Tela_inicial</string>
 </resources>

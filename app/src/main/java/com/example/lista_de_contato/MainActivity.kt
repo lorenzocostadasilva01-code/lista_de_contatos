@@ -19,29 +19,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Lista_de_contatoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                    MudarTela()
+                    BotaoToast()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Lista_de_contatoTheme {
-        Greeting("Android")
     }
 }
