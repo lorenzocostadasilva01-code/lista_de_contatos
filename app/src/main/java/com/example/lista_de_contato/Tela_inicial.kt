@@ -15,11 +15,13 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -74,13 +76,16 @@ fun AppNavigation() {
                 onEditClick = { index ->
                     navController.navigate("editar/$index")
                 },
+                onDeleteClick = { index ->
+                    contatos.removeAt(index)
+                },
                 onAdicionarClick = {
                     navController.navigate("adicionar")
                 }
             )
         }
 
-        // Rota 2: Adicionar Contato (Usa a tela do novo arquivo)
+        // Rota 2: Adicionar Contato
         composable("adicionar") {
             TelaAdicionarContato(
                 onSalvarClick = { novoContato ->
@@ -132,6 +137,7 @@ fun TelaListaContatos(
     contatos: List<Contato>,
     onItemClick: (Int) -> Unit,
     onEditClick: (Int) -> Unit,
+    onDeleteClick: (Int) -> Unit,
     onAdicionarClick: () -> Unit
 ) {
     Scaffold(
@@ -179,10 +185,23 @@ fun TelaListaContatos(
                                 modifier = Modifier.weight(1f)
                             )
 
-                            OutlinedButton(
-                                onClick = { onEditClick(index) }
-                            ) {
-                                Text("Editar")
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                OutlinedButton(
+                                    onClick = { onEditClick(index) },
+                                    modifier = Modifier.padding(end = 4.dp)
+                                ) {
+                                    Text("Editar")
+                                }
+
+                                IconButton(
+                                    onClick = { onDeleteClick(index) }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = "Excluir Contato",
+                                        tint = MaterialTheme.colorScheme.error
+                                    )
+                                }
                             }
                         }
                     }
